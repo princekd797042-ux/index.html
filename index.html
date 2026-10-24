@@ -1,305 +1,129 @@
-```html
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+         <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Zone - Discover Top AI Tools</title>
-    <!-- Tailwind CSS for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom Configuration for Tailwind to match our dark futuristic theme -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#0B0F19',
-                            card: '#151C2C',
-                            accent: '#3B82F6', // Blue
-                            neon: '#8B5CF6' // Purple
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
+    <title>AI Zone - Best AI Tools for Your Business</title>
     <style>
-        body {
-            background-color: #0B0F19; /* Deep dark background */
-        }
-        /* Custom scrollbar for a premium look */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0B0F19;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #374151;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4B5563;
-        }
-        /* Gradient text utility */
-        .text-gradient {
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-image: linear-gradient(to right, #3B82F6, #8B5CF6);
-        }
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #0f111a; color: white; }
+        header { display: flex; justify-content: space-between; padding: 20px; background-color: #1a1d2d; align-items: center; }
+        .logo { font-size: 24px; font-weight: bold; color: #4a90e2; }
+        .hero { text-align: center; padding: 50px 20px; }
+        .hero h1 { font-size: 36px; margin-bottom: 20px; }
+        .hero h1 span { color: #8b5cf6; }
+        .hero p { color: #a0aec0; margin-bottom: 30px; line-height: 1.6; }
+        .search-container { display: flex; justify-content: center; margin-bottom: 30px; }
+        .search-container input { padding: 15px; width: 60%; max-width: 400px; border-radius: 30px 0 0 30px; border: none; outline: none; background: #1a1d2d; color: white; }
+        .search-container button { padding: 15px 30px; border-radius: 0 30px 30px 0; border: none; background: #6366f1; color: white; font-weight: bold; cursor: pointer; }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .tool-card { background-color: #1a1d2d; border-radius: 15px; overflow: hidden; }
+        .card-header { padding: 40px 20px; text-align: center; position: relative; }
+        .badge { position: absolute; top: 10px; right: 10px; padding: 5px 10px; border-radius: 10px; font-size: 12px; font-weight: bold; }
+        .badge-free { background-color: #10b981; color: white; }
+        .badge-paid { background-color: #8b5cf6; color: white; }
+        .tool-title { margin: 0; font-size: 28px; font-weight: bold; }
+        .tool-content { padding: 20px; }
+        .tool-name { font-size: 20px; margin: 0 0 10px 0; }
+        .category-tag { background: #2d3748; padding: 5px 10px; border-radius: 15px; font-size: 12px; color: #a0aec0; display: inline-block; margin-bottom: 15px; }
+        .tool-desc { color: #a0aec0; font-size: 14px; margin-bottom: 20px; line-height: 1.5; }
+        .btn { display: block; width: 100%; padding: 12px 0; text-align: center; background: #2d3748; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; box-sizing: border-box; }
+        .btn:hover { background: #4a5568; }
     </style>
 </head>
-<body class="text-slate-300 font-sans antialiased selection:bg-brand-neon selection:text-white">
-
-    <!-- Navigation Header -->
-    <header class="fixed w-full top-0 z-50 bg-brand-dark/80 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center cursor-pointer">
-                    <i class="fa-solid fa-microchip text-brand-accent text-2xl mr-2"></i>
-                    <span class="font-bold text-xl text-white tracking-wide">AI <span class="text-brand-accent">Zone</span></span>
-                </div>
-                <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#" class="text-white hover:text-brand-accent transition-colors font-medium">Home</a>
-                    <a href="#categories" class="text-slate-300 hover:text-white transition-colors font-medium">Categories</a>
-                    <a href="#trending" class="text-slate-300 hover:text-white transition-colors font-medium">Trending</a>
-                    <a href="#deals" class="text-slate-300 hover:text-white transition-colors font-medium">Top Deals</a>
-                </nav>
-                <!-- Submit Tool Button -->
-                <div class="hidden md:block">
-                    <button class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-medium border border-slate-700 transition-all shadow-[0_0_15px_rgba(59,130,246,0.1)] hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-                        Submit Tool
-                    </button>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button class="text-slate-300 hover:text-white focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+<body>
+    <header>
+        <div class="logo">⚙️ AI Zone</div>
+        <div>☰</div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-16 px-4 relative overflow-hidden">
-        <!-- Background Glowing Orbs for futuristic feel -->
-        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-brand-accent rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
-        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-brand-neon rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
+    <div class="hero">
+        <h1>Discover The Best <br><span>AI Tools</span> for Your Business</h1>
+        <p>Explore our curated directory of top artificial intelligence tools. Boost your productivity, automate tasks, and step into the future.</p>
+        <div class="search-container">
+            <input type="text" placeholder="Search for 'Video Generator'...">
+            <button>Search</button>
+        </div>
+    </div>
 
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                Discover The Best <br/>
-                <span class="text-gradient">AI Tools</span> for Your Business
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
-                Explore our curated directory of top artificial intelligence tools. Boost your productivity, automate tasks, and step into the future.
-            </p>
-
-            <!-- Search Bar UI -->
-            <div class="relative max-w-2xl mx-auto">
-                <div class="relative flex items-center w-full h-14 rounded-full focus-within:shadow-[0_0_25px_rgba(139,92,246,0.3)] bg-brand-card border border-slate-700 overflow-hidden transition-shadow duration-300">
-                    <div class="grid place-items-center h-full w-12 text-slate-400">
-                        <i class="fa-solid fa-search"></i>
-                    </div>
-                    <input
-                    class="peer h-full w-full outline-none text-sm text-white bg-transparent pr-2"
-                    type="text"
-                    id="search"
-                    placeholder="Search for 'Video Generator', 'Copywriting'..." /> 
-                    <button class="bg-gradient-to-r from-brand-accent to-brand-neon hover:opacity-90 text-white h-full px-6 font-semibold transition-opacity">
-                        Search
-                    </button>
-                </div>
+    <div class="tools-grid">
+        <div class="tool-card">
+            <div class="card-header" style="background: #10b981;">
+                <span class="badge badge-free" style="background: rgba(0,0,0,0.5);">Freemium</span>
+                <h3 class="tool-title" style="color: white;">ChatGPT</h3>
             </div>
-            
-            <!-- Quick Tags -->
-            <div class="mt-8 flex flex-wrap justify-center gap-3">
-                <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300 cursor-pointer hover:bg-slate-700 transition">🔥 Popular</span>
-                <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300 cursor-pointer hover:bg-slate-700 transition">📝 Copywriting</span>
-                <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300 cursor-pointer hover:bg-slate-700 transition">🎨 Image Gen</span>
-                <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300 cursor-pointer hover:bg-slate-700 transition">🎥 Video</span>
+            <div class="tool-content">
+                <h4 class="tool-name">ChatGPT</h4>
+                <span class="category-tag">Text / Chat</span>
+                <p class="tool-desc">Advanced conversational AI by OpenAI. Great for coding, writing, and brainstorming.</p>
+                <a href="#" class="btn">Get Tool ↗</a>
             </div>
         </div>
-    </section>
 
-    <!-- AI Tools Grid Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" id="trending">
-        <div class="flex justify-between items-end mb-8">
-            <div>
-                <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Trending AI Tools</h2>
-                <p class="text-slate-400 text-sm">Most popular tools picked by our community this week.</p>
+        <div class="tool-card">
+            <div class="card-header" style="background: #8b5cf6;">
+                <span class="badge badge-paid">Paid</span>
+                <h3 class="tool-title" style="color: white;">Midjourney</h3>
             </div>
-            <a href="#" class="hidden md:block text-brand-accent hover:text-brand-neon transition-colors text-sm font-medium">View All <i class="fa-solid fa-arrow-right ml-1"></i></a>
-        </div>
-
-        <!-- The Grid Container where JavaScript will inject cards -->
-        <div id="tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <!-- Cards will be populated here by JavaScript -->
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="border-t border-slate-800 bg-brand-dark mt-12 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center mb-4 md:mb-0">
-                <i class="fa-solid fa-microchip text-brand-accent text-xl mr-2"></i>
-                <span class="font-bold text-lg text-white">AI Zone</span>
-            </div>
-            <p class="text-slate-500 text-sm text-center md:text-left mb-4 md:mb-0">
-                &copy; 2026 AI Zone Directory. Built for the Future.
-            </p>
-            <div class="flex space-x-6">
-                <a href="#" class="text-slate-500 hover:text-white transition-colors"><i class="fa-brands fa-twitter text-xl"></i></a>
-                <a href="#" class="text-slate-500 hover:text-white transition-colors"><i class="fa-brands fa-discord text-xl"></i></a>
-                <a href="#" class="text-slate-500 hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
+            <div class="tool-content">
+                <h4 class="tool-name">Midjourney</h4>
+                <span class="category-tag">Image Gen</span>
+                <p class="tool-desc">Creates stunning, highly detailed AI-generated images from simple text prompts.</p>
+                <a href="#" class="btn">Get Tool ↗</a>
             </div>
         </div>
-    </footer>
 
-    <!-- JavaScript to populate the Tools Grid dynamically -->
-    <script>
-        // Database of AI Tools (You can easily add more here later)
-        const aiTools = [
-            {
-                name: "ChatGPT",
-                description: "Advanced conversational AI by OpenAI. Great for coding, writing, and brainstorming.",
-                category: "Text / Chat",
-                tagColor: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-                imageUrl: "https://placehold.co/400x200/10b981/ffffff?text=ChatGPT",
-                affiliateLink: "#",
-                priceText: "Freemium"
-            },
-            {
-                name: "Midjourney",
-                description: "Creates stunning, highly detailed AI-generated images from simple text prompts.",
-                category: "Image Gen",
-                tagColor: "bg-purple-500/20 text-purple-400 border-purple-500/30",
-                imageUrl: "https://placehold.co/400x200/8b5cf6/ffffff?text=Midjourney",
-                affiliateLink: "#",
-                priceText: "Paid"
-            },
-            {
-                name: "Jasper AI",
-                description: "The ultimate AI copywriter tailored for marketers, bloggers, and businesses.",
-                category: "Copywriting",
-                tagColor: "bg-amber-500/20 text-amber-400 border-amber-500/30",
-                imageUrl: "https://placehold.co/400x200/f59e0b/ffffff?text=Jasper",
-                affiliateLink: "#",
-                priceText: "Free Trial"
-            },
-            {
-                name: "RunwayML",
-                description: "Next-generation creative suite for generating and editing videos using AI models.",
-                category: "Video Gen",
-                tagColor: "bg-rose-500/20 text-rose-400 border-rose-500/30",
-                imageUrl: "https://placehold.co/400x200/e11d48/ffffff?text=Runway",
-                affiliateLink: "#",
-                priceText: "Freemium"
-            },
-            {
-                name: "ElevenLabs",
-                description: "The most realistic AI voice generator and text-to-speech software available today.",
-                category: "Audio",
-                tagColor: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
-                imageUrl: "https://placehold.co/400x200/059669/ffffff?text=ElevenLabs",
-                affiliateLink: "#",
-                priceText: "Freemium"
-            },
-            {
-                name: "Notion AI",
-                description: "Access the limitless power of AI, right inside your Notion workspace.",
-                category: "Productivity",
-                tagColor: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30",
-                imageUrl: "https://placehold.co/400x200/06b6d4/ffffff?text=Notion+AI",
-                affiliateLink: "#",
-                priceText: "Add-on"
-            },
-            {
-                name: "Framer AI",
-                description: "Design and publish stunning websites in seconds using AI generation.",
-                category: "Web Design",
-                tagColor: "bg-pink-500/20 text-pink-400 border-pink-500/30",
-                imageUrl: "https://placehold.co/400x200/db2777/ffffff?text=Framer",
-                affiliateLink: "#",
-                priceText: "Free Tier"
-            },
-            {
-                name: "Leonardo AI",
-                description: "Generate production-quality visual assets for your projects with speed and style-consistency.",
-                category: "Image Gen",
-                tagColor: "bg-purple-500/20 text-purple-400 border-purple-500/30",
-                imageUrl: "https://placehold.co/400x200/6b21a8/ffffff?text=Leonardo",
-                affiliateLink: "#",
-                priceText: "Freemium"
-            }
-        ];
+        <div class="tool-card">
+            <div class="card-header" style="background: #f59e0b;">
+                <span class="badge badge-paid" style="background: rgba(0,0,0,0.5);">Free Trial</span>
+                <h3 class="tool-title" style="color: white;">Jasper</h3>
+            </div>
+            <div class="tool-content">
+                <h4 class="tool-name">Jasper AI</h4>
+                <span class="category-tag">Copywriting</span>
+                <p class="tool-desc">The ultimate AI copywriter tailored for marketers, bloggers, and businesses.</p>
+                <a href="#" class="btn">Get Tool ↗</a>
+            </div>
+        </div>
 
-        const gridContainer = document.getElementById('tools-grid');
+        <div class="tool-card">
+            <div class="card-header" style="background: linear-gradient(135deg, #FF512F, #DD2476);">
+                <span class="badge badge-free" style="background: #10b981;">High Commission</span>
+                <h3 class="tool-title" style="color: white;">InVideo AI</h3>
+            </div>
+            <div class="tool-content">
+                <h4 class="tool-name">InVideo</h4>
+                <span class="category-tag">Video Gen</span>
+                <p class="tool-desc">Sirf text likhein aur AI aapke liye poori video, voiceover aur subtitles bana dega.</p>
+                <a href="#" class="btn">Get Tool ↗</a>
+            </div>
+        </div>
 
-        // Function to create and render tool cards
-        function renderTools() {
-            gridContainer.innerHTML = ''; // Clear existing
-            
-            aiTools.forEach(tool => {
-                // Card HTML Structure
-                const cardHTML = `
-                    <div class="bg-brand-card rounded-xl border border-slate-700/50 overflow-hidden hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(139,92,246,0.3)] hover:border-slate-600 transition-all duration-300 flex flex-col group">
-                        <!-- Image Container -->
-                        <div class="relative h-40 overflow-hidden">
-                            <img src="${tool.imageUrl}" alt="${tool.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-semibold text-white border border-white/10">
-                                ${tool.priceText}
-                            </div>
-                        </div>
-                        
-                        <!-- Card Content -->
-                        <div class="p-5 flex-grow flex flex-col">
-                            <div class="flex items-center justify-between mb-3">
-                                <h3 class="text-xl font-bold text-white group-hover:text-brand-accent transition-colors">${tool.name}</h3>
-                            </div>
-                            
-                            <!-- Category Tag -->
-                            <div class="mb-3">
-                                <span class="inline-block px-2.5 py-1 text-[11px] font-semibold rounded-full border ${tool.tagColor}">
-                                    ${tool.category}
-                                </span>
-                            </div>
-                            
-                            <!-- Description -->
-                            <p class="text-slate-400 text-sm mb-6 flex-grow line-clamp-2">
-                                ${tool.description}
-                            </p>
-                            
-                            <!-- CTA Button (Affiliate Link Placeholder) -->
-                            <a href="${tool.affiliateLink}" target="_blank" class="w-full block text-center bg-slate-800 hover:bg-gradient-to-r hover:from-brand-accent hover:to-brand-neon text-white font-medium py-2.5 rounded-lg border border-slate-700 hover:border-transparent transition-all duration-300 shadow-sm">
-                                Get Tool <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1 opacity-70"></i>
-                            </a>
-                        </div>
-                    </div>
-                `;
-                gridContainer.innerHTML += cardHTML;
-            });
-        }
+        <div class="tool-card">
+            <div class="card-header" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);">
+                <span class="badge badge-paid" style="background: #f59e0b;">Trending</span>
+                <h3 class="tool-title" style="color: white;">Pictory</h3>
+            </div>
+            <div class="tool-content">
+                <h4 class="tool-name">Pictory AI</h4>
+                <span class="category-tag">Video Gen</span>
+                <p class="tool-desc">Lambe articles ya blogs ko automatically chote aur viral videos mein convert karein.</p>
+                <a href="#" class="btn">Get Tool ↗</a>
+            </div>
+        </div>
 
-        // Initialize grid on load
-        window.onload = () => {
-            renderTools();
-        };
-    </script>
+        <div class="tool-card">
+            <div class="card-header" style="background: linear-gradient(135deg, #00C9FF, #92FE9D);">
+                <span class="badge badge-free" style="background: rgba(0,0,0,0.5);">Freemium</span>
+                <h3 class="tool-title" style="color: black;">Canva AI</h3>
+            </div>
+            <div class="tool-content">
+                <h4 class="tool-name">Canva Magic Studio</h4>
+                <span class="category-tag">Design</span>
+                <p class="tool-desc">Bina kisi skill ke professional designs, logos, aur social media posts banayein.</p>
+                <a href="#" class="btn">Get Tool ↗</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-```
+       
